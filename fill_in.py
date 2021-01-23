@@ -60,6 +60,9 @@ def updateCheckboxValues(page, fields):
 def fixEvice(page):
     for j in range(0, len(page['/Annots'])):
         writer_annot = page['/Annots'][j].getObject()
+        if not writer_annot.get("/AS") and writer_annot.get("/AP"):
+            del writer_annot["/AP"]
+        print(writer_annot)
         if "waarheid" in str(writer_annot.get("/T")):
            writer_annot.update({
                     PyPDF2.generic.NameObject("/AS"):PyPDF2.generic.NameObject("/Akkoord"),
@@ -90,6 +93,7 @@ writer = PyPDF2.PdfFileWriter()
 
 first_page = template.getPage(0)
 writer.updatePageFormFieldValues(first_page, fields=import_dict)
+fixEvice(first_page)
 writer.addPage(first_page)
 first_page = template.getPage(1)
 writer.addPage(first_page)
