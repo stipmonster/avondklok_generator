@@ -1,9 +1,6 @@
 import os
-import re
 
 import PyPDF2
-import subprocess
-import sys
 
 template_path = os.path.dirname(__file__) + "/empty.pdf"
 
