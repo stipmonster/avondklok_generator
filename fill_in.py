@@ -22,7 +22,7 @@ import_dict = {
 "Toelichting medische hulp voor mijzelf": "",
 "Toelichting medische hulp voor iemand anders":"",
 # Keep fixed
-"Ik verklaar dat ik dit formulier naar waarheid heb ingevuld 2":"True" ,
+"Ik verklaar dat ik dit formulier naar waarheid heb ingevuld 2":"/Akkoord" ,
 "verklaar hierbij dat ik van (datum)": str(date.today()) ,
 "tot en met (datum)": str(date.today()+ datetime.timedelta(days=1)) ,
 "Datum ondertekening": str(date.today()),
@@ -58,6 +58,14 @@ def updateCheckboxValues(page, fields):
                     PyPDF2.generic.NameObject("/V"):PyPDF2.generic.NameObject("/0")
            })
 
+def fixEvice(page):
+    for j in range(0, len(page['/Annots'])):
+        writer_annot = page['/Annots'][j].getObject()
+        if "waarheid" in str(writer_annot.get("/T")):
+           writer_annot.update({
+                    PyPDF2.generic.NameObject("/AS"):PyPDF2.generic.NameObject("/Akkoord"),
+           })
+           print(writer_annot)
 
 # https://stackoverflow.com/questions/58898542/update-a-fillable-pdf-using-pypdf2
 def set_need_appearances_writer(writer):
@@ -81,15 +89,17 @@ def set_need_appearances_writer(writer):
 template = PyPDF2.PdfFileReader(template_path)
 
 writer = PyPDF2.PdfFileWriter()
-set_need_appearances_writer(writer)
 
 first_page = template.getPage(0)
 writer.updatePageFormFieldValues(first_page, fields=import_dict)
+fixEvice(first_page)
 writer.addPage(first_page)
 first_page = template.getPage(1)
 writer.addPage(first_page)
 writer.updatePageFormFieldValues(writer.getPage(1), fields=import_dict)
 updateCheckboxValues(writer.getPage(1),option)
+set_need_appearances_writer(writer)
+fixEvice(first_page)
 with open("output.pdf","wb") as new:
     writer.write(new)
 
