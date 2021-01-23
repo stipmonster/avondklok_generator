@@ -17,7 +17,6 @@ import_dict = {
 "Adres": "Radioweg 1" ,
 "Woonplaats": "Amsterdam",
 "Plaats ondertekening": "Amsterdam" ,
-
 #optional:
 "Toelichting medische hulp voor mijzelf": "",
 "Toelichting medische hulp voor iemand anders":"",
@@ -91,7 +90,6 @@ writer = PyPDF2.PdfFileWriter()
 
 first_page = template.getPage(0)
 writer.updatePageFormFieldValues(first_page, fields=import_dict)
-fixEvice(first_page)
 writer.addPage(first_page)
 first_page = template.getPage(1)
 writer.addPage(first_page)
