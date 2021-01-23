@@ -5,19 +5,22 @@ from datetime import date
 import datetime
 template_path = os.path.dirname(__file__) + "/empty.pdf"
 
-
+#Edit fields with correct data
 import_dict = {
 "Geboortedatum": "2020-01-01",
 "Voorletter(s) en achternaam":"Henk Acker" ,
 "Adres": "Radioweg 1" ,
 "Woonplaats": "Amsterdam",
-"verklaar hierbij dat ik van (datum)": str(date.today()) ,
-"tot en met (datum)": str(date.today()+ datetime.timedelta(days=1)) ,
 "Plaats ondertekening": "Amsterdam" ,
-"Datum ondertekening": str(date.today()),
+
+#optional:
 "Toelichting medische hulp voor mijzelf": "",
 "Toelichting medische hulp voor iemand anders":"",
+# Keep fixed
 "Ik verklaar dat ik dit formulier naar waarheid heb ingevuld 2":"True" ,
+"verklaar hierbij dat ik van (datum)": str(date.today()) ,
+"tot en met (datum)": str(date.today()+ datetime.timedelta(days=1)) ,
+"Datum ondertekening": str(date.today()),
 }
 
 select_one = {
@@ -31,6 +34,7 @@ select_one = {
 "Ik ben onderweg van of naar een examen of tentamen" ,
 }
 
+# Select one of the options from the select_one
 option = {
 "Ik moet werken en heb de Werkgeversverklaring Avondklok bij me" ,
 }
