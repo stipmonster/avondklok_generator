@@ -65,7 +65,6 @@ def fixEvice(page):
            writer_annot.update({
                     PyPDF2.generic.NameObject("/AS"):PyPDF2.generic.NameObject("/Akkoord"),
            })
-           print(writer_annot)
 
 # https://stackoverflow.com/questions/58898542/update-a-fillable-pdf-using-pypdf2
 def set_need_appearances_writer(writer):
