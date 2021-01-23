@@ -5,7 +5,10 @@ import os
 import PyPDF2
 from datetime import date
 import datetime
-template_path = os.path.dirname(__file__) + "/empty.pdf"
+
+import pathlib
+
+template_path = str(pathlib.Path(__file__).parent.absolute()) + "/empty.pdf"
 
 #Edit fields with correct data
 import_dict = {
