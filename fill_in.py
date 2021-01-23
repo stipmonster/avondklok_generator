@@ -1,7 +1,8 @@
 import os
 
 import PyPDF2
-
+from datetime import date
+import datetime
 template_path = os.path.dirname(__file__) + "/empty.pdf"
 
 
@@ -10,10 +11,10 @@ import_dict = {
 "Voorletter(s) en achternaam":"Henk Acker" ,
 "Adres": "Radioweg 1" ,
 "Woonplaats": "Amsterdam",
-"verklaar hierbij dat ik van (datum)":"2020-01-01" ,
-"tot en met (datum)": "2020-01-02" ,
+"verklaar hierbij dat ik van (datum)": str(date.today()) ,
+"tot en met (datum)": str(date.today()+ datetime.timedelta(days=1)) ,
 "Plaats ondertekening": "Amsterdam" ,
-"Datum ondertekening": "2020-01-01",
+"Datum ondertekening": str(date.today()),
 "Toelichting medische hulp voor mijzelf": "",
 "Toelichting medische hulp voor iemand anders":"",
 "Ik verklaar dat ik dit formulier naar waarheid heb ingevuld 2":"True" ,
