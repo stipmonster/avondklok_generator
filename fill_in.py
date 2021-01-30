@@ -62,7 +62,6 @@ def fixEvice(page):
         writer_annot = page['/Annots'][j].getObject()
         if not writer_annot.get("/AS") and writer_annot.get("/AP"):
             del writer_annot["/AP"]
-        print(writer_annot)
         if "waarheid" in str(writer_annot.get("/T")):
            writer_annot.update({
                     PyPDF2.generic.NameObject("/AS"):PyPDF2.generic.NameObject("/Akkoord"),
